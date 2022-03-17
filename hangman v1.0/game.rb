@@ -1,18 +1,23 @@
 require './printer.rb'
 
 class Game
-  def initialize()
-    @word = ask_word
+  def initialize(word)
+    if word == nil
+      @word = ask_word
+    else
+      @word = word
+    end
+
     @correctly_guessed_letters = []
     @incorrectly_guessed_letters = []
   end
 
-  # Game logic method
+  # Method with game logic
   def play()
     printer = Printer.new
 
     while true
-      system("cls")
+      system "cls"
 
       printer.draw_current_gallows(@incorrectly_guessed_letters.size)
       printer.print_current_result(@word, @correctly_guessed_letters)
@@ -30,18 +35,18 @@ class Game
 
       # Check if the user won
       if @correctly_guessed_letters.sort === @word.chars.uniq.sort
-        system("cls")
+        system "cls"
 
         printer.print_current_result(@word, @correctly_guessed_letters)
-        abort "You won! It was word #{@word}!"
+        abort "You won! The word is '#{@word}'!"
       end
 
       # Check if the user lost
-      if @incorrectly_guessed_letters.size == 7
-        system("cls")
+      if @incorrectly_guessed_letters.size === 7
+        system "cls"
 
         printer.draw_current_gallows(@incorrectly_guessed_letters.size)
-        abort "You died =("
+        abort "You died."
       end
     end
   end
@@ -51,13 +56,8 @@ class Game
     print "Guess one letter: "
     letter = STDIN.gets.chomp.downcase
 
-    while letter !~ /[a-z]/
-      print "You can enter only letters. Try again: "
-      letter = STDIN.gets.encode("UTF-8").chomp.downcase
-    end
-
-    while letter.length > 1
-      print "You can enter only one letter. Try again: "
+    while !letter.match(/[a-z]/) || letter.length > 1
+      print "Incorrect letter. Try again: "
       letter = STDIN.gets.encode("UTF-8").chomp.downcase
     end
 
@@ -69,14 +69,11 @@ class Game
     print "Enter word: "
     word = STDIN.gets.encode("UTF-8").chomp.downcase
 
-    while word !~ /[a-z]/
-      print "Word must contain at least one letter. Try again: "
+    while !word.match(/[a-z]/)
+      print "Incorrect word. Try again: "
       word = STDIN.gets.encode("UTF-8").chomp.downcase
     end
 
     return word
   end
 end
-
-
-# Ввод слов с пробелов - печатать _ и не брать в проверку
