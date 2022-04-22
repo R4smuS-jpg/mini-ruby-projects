@@ -1,11 +1,14 @@
 require './printer.rb'
+require './word_reader.rb'
 
 class Game
-  def initialize(word)
-    if word == nil
-      @word = ask_word
+  def initialize()
+    word_reader = WordReader.new
+
+    if word_reader.read_from_argv != nil
+      @word = word_reader.read_from_argv
     else
-      @word = word
+      @word = word_reader.read_from_user
     end
 
     @correctly_guessed_letters = []
@@ -62,18 +65,5 @@ class Game
     end
 
     return letter
-  end
-
-  # Method that requests word
-  def ask_word()
-    print "Enter word: "
-    word = STDIN.gets.encode("UTF-8").chomp.downcase
-
-    while !word.match(/[a-z]/)
-      print "Incorrect word. Try again: "
-      word = STDIN.gets.encode("UTF-8").chomp.downcase
-    end
-
-    return word
   end
 end

@@ -16,7 +16,7 @@ class Printer
 
   # Method that draws gallows in console(wow)
   def draw_current_gallows(number_of_mistakes)
-    current_gallows_file = File.open("pseudographic/#{number_of_mistakes}_mistakes.txt")
+    current_gallows_file = File.open("./data/pseudographic/#{number_of_mistakes}_mistakes.txt")
     puts current_gallows_file.read
     current_gallows_file.close
   end

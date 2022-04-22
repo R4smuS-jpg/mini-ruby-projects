@@ -1,0 +1,13 @@
+programming
+extension
+available
+interface
+chicken
+orange
+car
+sample
+media
+basketball
+router
+switch
+variable
