@@ -17,7 +17,7 @@ class Game
     printer = Printer.new
 
     while true
-      system "cls"
+      system "clear"
 
       printer.draw_current_gallows(@incorrectly_guessed_letters.size)
       printer.print_current_result(@word, @correctly_guessed_letters)
@@ -35,7 +35,7 @@ class Game
 
       # Check if the user won
       if @correctly_guessed_letters.sort === @word.chars.uniq.sort
-        system "cls"
+        system "clear"
 
         printer.print_current_result(@word, @correctly_guessed_letters)
         abort "You won! The word is '#{@word}'!"
@@ -43,7 +43,7 @@ class Game
 
       # Check if the user lost
       if @incorrectly_guessed_letters.size === 7
-        system "cls"
+        system "clear"
 
         printer.draw_current_gallows(@incorrectly_guessed_letters.size)
         abort "You died."

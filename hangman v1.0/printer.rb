@@ -16,23 +16,8 @@ class Printer
 
   # Method that draws gallows in console(wow)
   def draw_current_gallows(number_of_mistakes)
-    case number_of_mistakes
-    when 0
-      puts "_____\n"
-    when 1
-      puts "  |  \n  |  \n  |  \n__|__"
-    when 2
-      puts "  ______\n  |  \n  |  \n  |  \n__|__"
-    when 3
-      puts "  ______\n  |    |\n  |  \n  |  \n__|__"
-    when 4
-      puts "  ______\n  |    |\n  |    O\n  |  \n__|__"
-    when 5
-      puts "  ______\n  |    |\n  |    O\n  |    |\n__|__"
-    when 6
-      puts "  ______\n  |    |\n  |    O\n  |   /|/\n__|__"
-    when 7
-      puts "  ______\n  |    |\n  |    O\n  |   /|/\n__|__ //"
-    end
+    current_gallows_file = File.open("pseudographic/#{number_of_mistakes}_mistakes.txt")
+    puts current_gallows_file.read
+    current_gallows_file.close
   end
 end
