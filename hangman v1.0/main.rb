@@ -6,7 +6,7 @@ class Main
   welcome_file.close
 
   puts "Warning!\nYou can enter words and letters consist of symbols of latin alphabet only.\nGood luck!"
-  # sleep 6 
+  sleep 6 
 
   system "clear"
 

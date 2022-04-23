@@ -59,7 +59,7 @@ class Game
     print "Guess one letter: "
     letter = STDIN.gets.chomp.downcase
 
-    while !letter.match(/[a-z]/) || letter.length > 1
+    while !letter.match(/^[a-z]$/)
       print "Incorrect letter. Try again: "
       letter = STDIN.gets.encode("UTF-8").chomp.downcase
     end

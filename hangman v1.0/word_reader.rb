@@ -20,10 +20,10 @@ class WordReader
     if choose == "0"
       system "clear"
 
-      print "Enter word: "
+      print "Enter word: "  
       word = STDIN.gets.encode("UTF-8").chomp.downcase
 
-      while !word.match(/[a-z]/) || word.include?(" ") 
+      while !word.match(/^[a-z]+$/)  
         print "Incorrect word. Try again: "
         word = STDIN.gets.encode("UTF-8").chomp.downcase
       end
