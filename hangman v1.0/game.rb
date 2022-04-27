@@ -23,7 +23,9 @@ class Game
       system "clear"
 
       printer.draw_current_gallows(@incorrectly_guessed_letters.size)
-      printer.print_current_result(@word, @correctly_guessed_letters)
+      printer.print_correct_letters(@word, @correctly_guessed_letters)
+      printer.print_wrong_letters(@incorrectly_guessed_letters)
+      printer.print_remained_mistakes(@incorrectly_guessed_letters.size)
 
       letter = ask_letter
 
@@ -56,7 +58,7 @@ class Game
 
   # Method that requests letter
   def ask_letter()
-    print "Guess one letter: "
+    print "\nGuess one letter: "
     letter = STDIN.gets.chomp.downcase
 
     while !letter.match(/^[a-z]$/)
