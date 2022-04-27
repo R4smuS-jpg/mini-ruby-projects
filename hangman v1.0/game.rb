@@ -34,6 +34,7 @@ class Game
         if !@correctly_guessed_letters.include?(letter)
           @correctly_guessed_letters << letter
         end
+
       elsif !@incorrectly_guessed_letters.include?(letter)
           @incorrectly_guessed_letters << letter
       end
@@ -42,8 +43,8 @@ class Game
       if @correctly_guessed_letters.sort === @word.chars.uniq.sort
         system "clear"
 
-        printer.print_current_result(@word, @correctly_guessed_letters)
-        abort "You won! The word is '#{@word}'!"
+        printer.print_correct_letters(@word, @correctly_guessed_letters)
+        abort "You won! The word is '#{@word}'! Congrats!"
       end
 
       # Check if the user lost
@@ -51,7 +52,7 @@ class Game
         system "clear"
 
         printer.draw_current_gallows(@incorrectly_guessed_letters.size)
-        abort "You died."
+        abort "You died. The word was '#{@word}'. What a stupid death..."
       end
     end
   end
