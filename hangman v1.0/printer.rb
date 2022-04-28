@@ -36,4 +36,11 @@ class Printer
   def print_remained_mistakes(number_of_mistakes)
     puts "Mistakes remained: #{7 - number_of_mistakes}"
   end
+
+  # Method that prints welcoming logo
+  def print_welcome
+    welcome_file = File.open("./data/pseudographic/welcome.txt")
+    puts welcome_file.read
+    welcome_file.close
+  end
 end

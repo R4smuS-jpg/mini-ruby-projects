@@ -12,7 +12,7 @@ class WordReader
     puts "0 - enter a word by yourself\n1 - let the program choose you a word"
     choose = STDIN.gets.chomp
 
-    while !choose.match(/^[0-1]$/)
+    until choose.match(/^[0-1]$/)
       print "Incorrect input. Try again: "
       choose = STDIN.gets.chomp
     end
@@ -23,7 +23,7 @@ class WordReader
       print "Enter word: "  
       word = STDIN.gets.encode("UTF-8").chomp.downcase
 
-      while !word.match(/^[a-z]+$/)  
+      until word.match(/^[a-z]+$/)  
         print "Incorrect word. Try again: "
         word = STDIN.gets.encode("UTF-8").chomp.downcase
       end
