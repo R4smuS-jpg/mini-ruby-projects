@@ -5,7 +5,7 @@ class Page
   end
 
   def add_line(line)
-    @content << line
+    @content.push(line)
   end
 
   def to_diary_page
