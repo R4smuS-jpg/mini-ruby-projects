@@ -1,1 +1,2 @@
-0   |   1.145
+gavno   |   5.266 seconds
+suka   |   1.029 seconds

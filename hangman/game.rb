@@ -72,15 +72,17 @@ class Game
 
   # Save score to file
   def save_user_score
-    file = File.open('./data/scoreboard.txt', 'w:UTF-8')
+    file = File.open('./data/scoreboard.txt', 'a:UTF-8')
   
     file.puts(@user.to_score_record)      
+
+    file.close
   end
 
   # Method that requests letter
   def ask_letter
     print "\nGuess one letter: "
-    letter = STDIN.gets.chomp.downcase
+    letter = STDIN.gets.chomp.downcase.strip
 
     until letter.match(/^[a-z]$/)
       print "Incorrect letter. Try again: "

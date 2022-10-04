@@ -10,22 +10,22 @@ class WordReader
 
   def read_from_user
     puts "0 - enter a word by yourself\n1 - let the program choose you a word"
-    choose = STDIN.gets.chomp
+    choose = STDIN.gets.chomp.strip
 
     until choose.match(/^[0-1]$/)
       print 'Incorrect input. Try again: '
-      choose = STDIN.gets.chomp
+      choose = STDIN.gets.chomp.strip
     end
 
     if choose == '0'
       system 'clear'
 
       print 'Enter word: '  
-      word = STDIN.gets.encode('UTF-8').chomp.downcase
+      word = STDIN.gets.encode('UTF-8').chomp.downcase.strip
 
       until word.match(/^[a-z]+$/)  
         print 'Incorrect word. Try again: '
-        word = STDIN.gets.encode('UTF-8').chomp.downcase
+        word = STDIN.gets.encode('UTF-8').chomp.downcase.strip
       end
 
       return word
