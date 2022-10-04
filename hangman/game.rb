@@ -1,10 +1,12 @@
 require './printer.rb'
+require './user.rb'
 require './word_reader.rb'
 
 class Game
   def initialize
     word_reader = WordReader.new
 
+    @user = get_user
     @word = word_reader.read_from_argv || word_reader.read_from_user
 
     @correctly_guessed_letters = []
@@ -15,8 +17,11 @@ class Game
   def play
     printer = Printer.new
 
+    start_time = Time.now
+    end_time = nil
+
     while true
-      system "clear"
+      system 'clear'
 
       printer.draw_current_gallows(@incorrectly_guessed_letters.size)
       printer.print_correct_letters(@word, @correctly_guessed_letters)
@@ -36,20 +41,40 @@ class Game
 
       # Check if the user won
       if @correctly_guessed_letters.sort == @word.chars.uniq.sort
-        system "clear"
+        system 'clear'
 
         printer.print_correct_letters(@word, @correctly_guessed_letters)
+
+        end_time = Time.now
+        @user.time = (end_time - start_time).round(3)
+        save_user_score
+
         abort "You won! The word is '#{@word}'! Congrats!"
       end
 
       # Check if the user lost
       if @incorrectly_guessed_letters.size == 7
-        system "clear"
+        system 'clear'
 
         printer.draw_current_gallows(@incorrectly_guessed_letters.size)
+
         abort "You died. The word was '#{@word}'. What a stupid death..."
       end
     end
+  end
+
+  # Returns new user
+  def get_user
+    print 'Enter your name: '
+    username = STDIN.gets.chomp
+    return User.new(username)
+  end
+
+  # Save score to file
+  def save_user_score
+    file = File.open('./data/scoreboard.txt', 'w:UTF-8')
+  
+    file.puts(@user.to_score_record)      
   end
 
   # Method that requests letter

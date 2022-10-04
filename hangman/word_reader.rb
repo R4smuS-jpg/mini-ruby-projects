@@ -5,7 +5,7 @@ class WordReader
   end
 
   def read_from_file
-    return File.open("./data/words.txt", "r:UTF-8").readlines.sample.chomp
+    return File.open('./data/words.txt', 'r:UTF-8').readlines.sample.chomp
   end
 
   def read_from_user
@@ -13,19 +13,19 @@ class WordReader
     choose = STDIN.gets.chomp
 
     until choose.match(/^[0-1]$/)
-      print "Incorrect input. Try again: "
+      print 'Incorrect input. Try again: '
       choose = STDIN.gets.chomp
     end
 
-    if choose == "0"
-      system "clear"
+    if choose == '0'
+      system 'clear'
 
-      print "Enter word: "  
-      word = STDIN.gets.encode("UTF-8").chomp.downcase
+      print 'Enter word: '  
+      word = STDIN.gets.encode('UTF-8').chomp.downcase
 
       until word.match(/^[a-z]+$/)  
-        print "Incorrect word. Try again: "
-        word = STDIN.gets.encode("UTF-8").chomp.downcase
+        print 'Incorrect word. Try again: '
+        word = STDIN.gets.encode('UTF-8').chomp.downcase
       end
 
       return word
