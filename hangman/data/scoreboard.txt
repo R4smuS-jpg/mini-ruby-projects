@@ -1,0 +1,2 @@
+bebra : 0.155 seconds
+suka : 0.139 seconds

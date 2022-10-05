@@ -6,7 +6,7 @@ class Game
   def initialize
     word_reader = WordReader.new
 
-    @user = get_user
+    @user = create_user
     @word = word_reader.read_from_argv || word_reader.read_from_user
 
     @correctly_guessed_letters = []
@@ -64,7 +64,7 @@ class Game
   end
 
   # Returns new user
-  def get_user
+  def create_user
     print 'Enter your name: '
     username = STDIN.gets.chomp
     return User.new(username)
@@ -72,10 +72,27 @@ class Game
 
   # Save score to file
   def save_user_score
-    file = File.open('./data/scoreboard.txt', 'a:UTF-8')
-  
-    file.puts(@user.to_score_record)      
+    file = File.open('./data/scoreboard.txt', 'r:UTF-8')
+    scores = file.readlines
+    file.close
+    scores.map! {|s| s.chomp}
 
+    user_has_record = false
+    scores.each do |s|
+      if s.include?(@user.name)
+        user_has_record = true
+        break
+      end
+    end
+
+    if user_has_record
+      scores.map! { |s| s.include?(@user.name) && @user.time < s.split[2].to_f ? s = @user.to_score_record : s }
+    else
+      scores.push(@user.to_score_record)
+    end
+
+    file = File.open('./data/scoreboard.txt', 'w:UTF-8')
+    file.write(scores.join("\n"))
     file.close
   end
 

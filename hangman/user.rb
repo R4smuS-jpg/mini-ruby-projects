@@ -11,7 +11,11 @@ class User
     @name
   end
 
+  def time
+    @time
+  end
+
   def to_score_record
-    return "#{@name}   |   #{@time} seconds"
+    return "#{@name} : #{@time} seconds"
   end
 end
