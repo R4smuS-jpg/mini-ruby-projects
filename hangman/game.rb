@@ -91,6 +91,8 @@ class Game
       scores.push(@user.to_score_record)
     end
 
+    scores.sort_by! { |s| s.split[2].to_f }
+
     file = File.open('./data/scoreboard.txt', 'w:UTF-8')
     file.write(scores.join("\n"))
     file.close

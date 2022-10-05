@@ -1,2 +1,2 @@
-bebra : 0.155 seconds
-suka : 0.139 seconds
+amogus : 0.13 seconds
+bebra : 0.147 seconds
