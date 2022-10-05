@@ -16,6 +16,6 @@ class User
   end
 
   def to_score_record
-    return "#{@name} : #{@time} seconds"
+    "#{@name} : #{@time} seconds"
   end
 end
