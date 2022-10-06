@@ -1,4 +1,6 @@
 class Printer
+  @@current_path = File.dirname(__FILE__)
+
   class << self
     # Method that prints current guessed letters(example: A _ _ L E)
     def print_correct_letters(word, correctly_guessed_letters)
@@ -28,7 +30,7 @@ class Printer
 
     # Method that draws gallows in console(wow)
     def draw_current_gallows(number_of_mistakes)
-      pseudographic_path = "./data/pseudographic/#{number_of_mistakes}_mistakes.txt"
+      pseudographic_path = @@current_path + "/data/pseudographic/#{number_of_mistakes}_mistakes.txt"
       current_gallows_file = File.open(pseudographic_path, 'r:UTF-8')
       puts current_gallows_file.read
       current_gallows_file.close
@@ -41,7 +43,7 @@ class Printer
 
     # Method that prints welcoming logo
     def print_welcome
-      welcome_path = './data/pseudographic/welcome.txt'
+      welcome_path = @@current_path + '/data/pseudographic/welcome.txt'
       welcome_file = File.open(welcome_path)
       puts welcome_file.read
       welcome_file.close

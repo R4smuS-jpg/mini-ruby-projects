@@ -32,7 +32,8 @@ class WordReader
     end
 
     def read_from_file
-      words_path = './data/words.txt'
+      current_path = File.dirname(__FILE__)
+      words_path = current_path + '/data/words.txt'
       File.open(words_path, 'r:UTF-8').readlines.sample.chomp
     end
   end

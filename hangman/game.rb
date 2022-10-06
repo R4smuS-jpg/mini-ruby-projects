@@ -68,7 +68,8 @@ class Game
 
     # Save score to file
     def save_user_score
-      scoreboard_path = './data/scoreboard.txt'
+      current_path = File.dirname(__FILE__)
+      scoreboard_path = current_path + '/data/scoreboard.txt'
       file = File.open(scoreboard_path, 'r:UTF-8')
       scores = file.readlines
       file.close
