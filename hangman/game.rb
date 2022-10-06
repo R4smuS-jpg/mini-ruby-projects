@@ -1,6 +1,6 @@
-require './printer.rb'
-require './user.rb'
-require './word_reader.rb'
+require_relative 'printer.rb'
+require_relative 'user.rb'
+require_relative 'word_reader.rb'
 
 class Game
   def initialize

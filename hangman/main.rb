@@ -1,4 +1,4 @@
-require './game.rb'
+require_relative 'game.rb'
 
 class Main
   Printer.print_welcome
