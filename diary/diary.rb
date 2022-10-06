@@ -10,7 +10,7 @@ class Diary
   end
 
   def start
-    create_owner if !@reader.owner_present?
+    create_owner unless @reader.owner_present?
 
     puts "Select one option:\n0 - add new page\n1 - read all pages"
     input = $stdin.gets.encode('UTF-8').chomp.to_i
