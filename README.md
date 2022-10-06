@@ -7,7 +7,7 @@ How to launch project:
 
 	$ rake [project_name]
 
-#### Projects:
+### Projects:
 
 **hangman** - the hangman game with drawing gallows components to the terminal.
 Word can be typed in through ARGV and if it's not, you can choose from getting random word
