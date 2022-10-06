@@ -2,9 +2,9 @@ task default: :welcome
 
 desc 'welcoming task'
 task :welcome do
-  puts "Welcome to Mini Ruby Projects! =)",
-        "Please, choose one of projects by typing 'rake [project_name]'",
-        "available projects: hangman, diary"
+  puts 'Welcome to Mini Ruby Projects! =)',
+        'Please, choose one of projects by typing \'rake [project_name]\'',
+        'available projects: hangman, diary'
 end
 
 desc 'launch hangman project'
