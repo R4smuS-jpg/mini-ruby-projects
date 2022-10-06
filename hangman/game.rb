@@ -43,7 +43,8 @@ class Game
         @user.time = (end_time - start_time).round(3)
         save_user_score
 
-        abort "You won! The word is '#{@word}'! Congrats!"
+        puts "You won! The word is '#{@word}'! Congrats!"
+        break
       end
 
       # Check if the user lost
@@ -52,7 +53,8 @@ class Game
 
         Printer.draw_current_gallows(incorrectly_guessed_letters.size)
 
-        abort "You died. The word was '#{@word}'. What a stupid death..."
+        puts "You died. The word was '#{@word}'. What a stupid death..."
+        break
       end
     end
   end

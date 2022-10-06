@@ -2,3 +2,4 @@ amogus : 0.13 seconds
 4upik : 0.141 seconds
 bebra : 0.147 seconds
 bebrik : 0.624 seconds
+trimbolo : 4.777 seconds
