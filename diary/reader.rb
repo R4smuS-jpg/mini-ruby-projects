@@ -4,11 +4,13 @@ class Reader
   end
 
   def read_all
-    diary_file = File.new('./data/diary.txt', 'r:UTF-8')
+    current_path = File.dirname(__FILE__)
+    diary_path = current_path + '/data/diary.txt' 
+    file = File.open(diary_path, 'r:UTF-8')
 
-    content = diary_file.read 
+    content = file.read 
 
-    diary_file.close
+    file.close
 
     content
   end

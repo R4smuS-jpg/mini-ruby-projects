@@ -1,4 +1,4 @@
-require "./diary.rb"
+require_relative 'diary.rb'
 
 class Main
   diary = Diary.new

@@ -11,3 +11,8 @@ desc 'launch hangman project'
 task :hangman do
   ruby './hangman/main.rb'
 end
+
+desc 'launch diary project'
+task :diary do
+  ruby './diary/main.rb'
+end

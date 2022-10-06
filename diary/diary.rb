@@ -1,7 +1,7 @@
-require "./writer.rb"
-require "./reader.rb"
-require "./page.rb"
-require "./owner.rb"
+require_relative 'writer.rb'
+require_relative 'reader.rb'
+require_relative 'page.rb'
+require_relative 'owner.rb'
 
 class Diary
   def initialize
