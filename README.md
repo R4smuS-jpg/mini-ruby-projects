@@ -1,8 +1,10 @@
 ## Little pet projects written in pure Ruby just for fun and education.
 Install necessary gems:
+
 	$ bundle install
 
 How to launch project:
+
 	$ rake [project_name]
 
 #### Projects:
