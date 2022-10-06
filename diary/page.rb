@@ -1,6 +1,6 @@
 class Page
-  def initialize()
-    @timestamp = ""
+  def initialize
+    @timestamp = ''
     @content = []
   end
 
@@ -9,14 +9,14 @@ class Page
   end
 
   def to_diary_page
-    pages_separator = "=" * 40
+    pages_separator = '=' * 40
     page = "\n#{pages_separator}\n#{@timestamp}\n" 
 
     @content.each do |line|
       page.concat("#{line}\n")
     end
 
-    return page
+    page
   end
 
   def set_timestamp

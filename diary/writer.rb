@@ -1,6 +1,6 @@
 class Writer
   def save_page(page)
-    diary_file = File.new("./data/diary.txt", "a:UTF-8")
+    diary_file = File.new('./data/diary.txt', 'a:UTF-8')
 
     diary_file.puts(page.to_diary_page)
 
@@ -8,7 +8,7 @@ class Writer
   end
 
   def save_owner(owner)
-    diary_file = File.new("./data/diary.txt", "a:UTF-8")
+    diary_file = File.new('./data/diary.txt', 'a:UTF-8')
 
     diary_file.puts(owner.to_profile)
 

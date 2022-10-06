@@ -10,12 +10,10 @@ class Diary
   end
 
   def start
-    if !@reader.owner_present?
-      create_owner
-    end
+    create_owner if !@reader.owner_present?
 
     puts "Select one option:\n0 - add new page\n1 - read all pages"
-    input = STDIN.gets.chomp.to_i
+    input = $stdin.gets.encode('UTF-8').chomp.to_i
     puts
 
     case input
@@ -29,17 +27,15 @@ class Diary
   def create_page
     page = Page.new
 
-    input_separator = "=" * 36
+    input_separator = '=' * 36
     puts "What's on your mind today? You can write it down. Type \"end\" to stop writing and save note to the diary.\n#{input_separator}"
 
-    line = ""
+    line = ''
 
-    while line != "end"
-      line = STDIN.gets.encode("UTF-8").chomp
+    while line != 'end'
+      line = $stdin.gets.encode('UTF-8').chomp
 
-      if line == "end"
-        break
-      end
+      break if line == 'end'
 
       page.add_line(line)
     end
@@ -51,12 +47,12 @@ class Diary
 
   def create_owner
     puts "Oh... Seems like the diary has no owner... You always wanted to have a diary, didn't you? So what's your name?"
-    name = STDIN.gets.chomp
+    name = $stdin.gets.encode('UTF-8').chomp
 
-    puts "Such a great name! And... How old are you?"
-    age = STDIN.gets.chomp
+    puts 'Such a great name! And... How old are you?'
+    age = $stdin.gets.encode('UTF-8').chomp
 
-    puts "I'm going to sign your new diary, give me a second" 
+    puts "I'm going to sign your new diary, give me a second"
     sleep 1
     puts "Oh, that's it! You have a diary now :)\n\n"
 
