@@ -11,7 +11,7 @@ How to launch project:
 
 **hangman** - the hangman game with drawing gallows components to the terminal.
 Word can be typed in through ARGV and if it's not, you can choose from getting random word
-from the programm's data txt file or type in it by yourself. Also there's scoreboard feature: 
+from the programm's data txt file or type it in by yourself. Also there's scoreboard feature: 
 the txt file contains player's name that had been asked before the start of the game and player's time needed to guess the word.
 Also scoreboard table is sorted by time so player with best time is at the top of it.
 ___
