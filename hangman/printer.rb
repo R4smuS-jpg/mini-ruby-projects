@@ -1,5 +1,7 @@
+require 'pry'
+
 class Printer
-  @@current_path = File.dirname(__FILE__)
+  CURRENT_PATH = File.dirname(__FILE__)
 
   class << self
     # Method that prints current guessed letters(example: A _ _ L E)
@@ -7,14 +9,14 @@ class Printer
       result = 'Current word: '
 
       word.chars.each do |char|
-        if correctly_guessed_letters.include?(char)
-          result += "#{char.upcase} "
-        else
-          result += '_ '
-        end
+        result += if correctly_guessed_letters.include?(char)
+                    "#{char.upcase} "
+                  else
+                    '_ '
+                  end
       end
 
-      puts result
+      $stdout.puts result
     end
 
     # Method that prints list of incorrectly guessed letters
@@ -25,32 +27,42 @@ class Printer
         result += letter.upcase + ' '
       end
 
-      puts result
+      $stdout.puts result
     end
 
     # Method that draws gallows in console(wow)
     def draw_current_gallows(number_of_mistakes)
-      pseudographic_path = @@current_path + "/data/pseudographic/#{number_of_mistakes}_mistakes.txt"
-      current_gallows_file = File.open(pseudographic_path, 'r:UTF-8')
-      puts current_gallows_file.read
-      current_gallows_file.close
+      relative_pseudographic_path = <<~PATH.chomp
+        /data/pseudographic/#{number_of_mistakes}_mistakes.txt
+      PATH
+      pseudographic_path = CURRENT_PATH + relative_pseudographic_path
+
+      current_gallows_graphic = File.read(pseudographic_path)
+      $stdout.puts current_gallows_graphic
     end
 
     # Method that print number of remained mistakes
     def print_remained_mistakes(number_of_mistakes)
-      puts "Mistakes remained: #{7 - number_of_mistakes}"
+      $stdout.puts "Mistakes remained: #{7 - number_of_mistakes}"
     end
 
     # Method that prints welcoming logo
     def print_welcome
-      welcome_path = @@current_path + '/data/pseudographic/welcome.txt'
-      welcome_file = File.open(welcome_path)
-      puts welcome_file.read
-      welcome_file.close
+      relative_welcome_path = '/data/pseudographic/welcome.txt'
+      welcome_path = CURRENT_PATH + relative_welcome_path
+      welcome_graphic = File.read(welcome_path)
+      $stdout.puts welcome_graphic
     end
 
     def print_warning
-      puts "Warning!\nYou can enter words and letters consist of symbols of latin alphabet only.\nGood luck!"
+      warning_message = <<~MSG
+        Warning!
+        You can enter words and letters consist of
+        symbols of latin alphabet only.
+        Good luck!
+      MSG
+
+      $stdout.puts warning_message
     end
   end
 end

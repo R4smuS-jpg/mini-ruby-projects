@@ -1,3 +1,4 @@
+require_relative 'printer.rb'
 require_relative 'game.rb'
 
 class Main
@@ -7,6 +8,5 @@ class Main
   sleep 6
   system 'clear'
 
-  game = Game.new
-  game.play
+  game = Game.new.play
 end

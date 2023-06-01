@@ -4,7 +4,7 @@ require_relative 'word_reader.rb'
 
 class Game
   def initialize
-    @user = create_user
+    @current_user = create_user
     @word = WordReader.read_from_argv || WordReader.read_from_user
   end
 
@@ -28,9 +28,13 @@ class Game
 
       # Insert or not a letter that user suggested
       if @word.include?(letter)
-        correctly_guessed_letters.push(letter) unless correctly_guessed_letters.include?(letter)
+        unless correctly_guessed_letters.include?(letter)
+          correctly_guessed_letters.push(letter)
+        end
       else
-        incorrectly_guessed_letters.push(letter) unless incorrectly_guessed_letters.include?(letter)
+        unless incorrectly_guessed_letters.include?(letter)
+          incorrectly_guessed_letters.push(letter) 
+        end
       end
 
       # Check if the user won
@@ -40,7 +44,7 @@ class Game
         Printer.print_correct_letters(@word, correctly_guessed_letters)
 
         end_time = Time.now
-        @user.time = (end_time - start_time).round(3)
+        @current_user.time = (end_time - start_time).round(3)
         save_user_score
 
         puts "You won! The word is '#{@word}'! Congrats!"
@@ -68,30 +72,41 @@ class Game
       User.new(username)
     end
 
-    # Save score to file
+    # Saves score to file
     def save_user_score
       current_path = File.dirname(__FILE__)
-      scoreboard_path = current_path + '/data/scoreboard.txt'
-      file = File.open(scoreboard_path, 'r:UTF-8')
-      scores = file.readlines
-      file.close
-      scores.map! {|s| s.chomp}
+      relative_scoreboard_path = '/data/scoreboard.txt'
+      scoreboard_path = current_path + relative_scoreboard_path
+
+      scores = []
+
+      File.open(scoreboard_path) do
+        File.foreach(scoreboard_path) do |line|
+          scores.push(line.chomp)
+        end
+      end
 
       user_has_record = false
+
       scores.each do |s|
-        if s.include?(@user.name)
+        if s.include?(@current_user.name)
           user_has_record = true
-          scores.map! { |s| s.include?(@user.name) && @user.time < s.split[2].to_f ? s = @user.to_score_record : s }
+
+          scores.map! do |s|
+            record_time = s.split[2].to_f
+            if s.include?(@current_user.name) && @current_user.time < record_time
+              @current_user.to_score_record
+            end
+          end
+
           break
         end
       end
 
-      scores.push(@user.to_score_record) unless user_has_record
+      scores.push(@current_user.to_score_record) unless user_has_record
       scores.sort_by! { |s| s.split[2].to_f }
 
-      file = File.open(scoreboard_path, 'w:UTF-8')
-      file.write(scores.join("\n"))
-      file.close
+      file = File.write(scoreboard_path, scores.join("\n"))
     end
 
     # Method that requests letter
