@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rake', require: false
-gem 'rubocop', require: false
+group :development do
+  gem 'rake', require: false
+  gem 'rubocop', require: false
+  gem 'pry'
+end
